@@ -1,6 +1,6 @@
 import sys
 import os
-
+import streamlit as st
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.pdf_loader import extract_text_from_pdf
