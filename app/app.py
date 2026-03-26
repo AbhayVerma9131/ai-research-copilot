@@ -1,11 +1,22 @@
 import streamlit as st
-
-st.set_page_config(page_title="AI Research Copilot")
+from src.pdf_loader import extract_text_from_pdf
+from src.summarizer import summarize_text
+from src.qa_engine import answer_question
 
 st.title("📄 AI Research Copilot")
-st.write("Upload a research paper and ask questions!")
 
 uploaded_file = st.file_uploader("Upload PDF", type="pdf")
 
 if uploaded_file:
-    st.success("File uploaded successfully!")
+    text = extract_text_from_pdf(uploaded_file)
+
+    st.subheader("📌 Summary")
+    summary = summarize_text(text)
+    st.write(summary)
+
+    st.subheader("❓ Ask a Question")
+    question = st.text_input("Enter your question")
+
+    if question:
+        answer = answer_question(question, text)
+        st.write("Answer:", answer)
