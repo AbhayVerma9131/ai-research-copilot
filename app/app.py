@@ -1,4 +1,8 @@
-import streamlit as st
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from src.pdf_loader import extract_text_from_pdf
 from src.summarizer import summarize_text
 from src.qa_engine import answer_question
